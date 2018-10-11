@@ -27,12 +27,12 @@
 
           <ion-item>
 
-            <ion-input type="text" placeholder="Username" style="box-shadow: 2px 2px 4px rgba(0, 0, 0, .5);"></ion-input>
+            <ion-input type="text" placeholder="Username" style="box-shadow: 2px 2px 4px rgba(0, 0, 0, .5);" #username></ion-input>
           </ion-item>
 
           <ion-item>
 
-            <ion-input type="password" placeholder="Password" style="box-shadow: 2px 2px 4px rgba(0, 0, 0, .5);"></ion-input>
+            <ion-input type="password" placeholder="Password" style="box-shadow: 2px 2px 4px rgba(0, 0, 0, .5);" #password></ion-input>
           </ion-item>
 
         </ion-list>
@@ -41,14 +41,14 @@
 
     <ion-row>
       <ion-col>
-        <button ion-button class="login-button" [@fadeIn]="loginState">Login</button>
+        <button ion-button class="login-button" [@fadeIn]="loginState" (click)="logInUser()">Login</button>
       </ion-col>
     </ion-row>
 
     <div style="text-align:center;padding-top:50px;text-shadow: 1px 1px 6px #000000;font-weight:bold"> Join SOBHA ! </div>
     <ion-row>
       <ion-col>
-        <button ion-button class="login-button" [@fadeIn]="loginState">Signup</button>
+        <button ion-button class="login-button" [@fadeIn]="loginState"  (click)="signUpUser()">Signup</button>
       </ion-col>
     </ion-row>
 

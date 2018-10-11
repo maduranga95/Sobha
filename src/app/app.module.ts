@@ -10,6 +10,11 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
+import { ProfilePage } from '../pages/profile/profile';
+import { SettingsPage } from '../pages/settings/settings';
+import { LeaderboardPage } from '../pages/leaderboard/leaderboard';
+import { GroupPage } from '../pages/group/group';
+import { LogoutPage } from '../pages/logout/logout';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AngularFireModule } from 'angularfire2';
@@ -30,7 +35,12 @@ const firebaseAuth={
     MyApp,
     HomePage,
     LoginPage,
-    SignupPage
+    SignupPage,
+    ProfilePage,
+    SettingsPage,
+    GroupPage,
+    LeaderboardPage,
+    LogoutPage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +57,12 @@ const firebaseAuth={
     MyApp,
     HomePage,
     LoginPage,
-    SignupPage
+    SignupPage,
+    ProfilePage,
+    SettingsPage,
+    LeaderboardPage,
+    GroupPage,
+    LogoutPage
   ],
   providers: [
     StatusBar,

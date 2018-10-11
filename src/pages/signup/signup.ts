@@ -1,10 +1,9 @@
 import { Component,trigger, state, style, transition, animate, keyframes, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { HomePage } from '../home/home';
-import { SignupPage } from '../signup/signup';
+import { LoginPage } from '../login/login';
 /**
- * Generated class for the LoginPage page.
+ * Generated class for the SignupPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -12,8 +11,8 @@ import { SignupPage } from '../signup/signup';
 
 @IonicPage()
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+  selector: 'page-signup',
+  templateUrl: 'signup.html',
   animations: [
 
     //For the logo
@@ -63,21 +62,15 @@ import { SignupPage } from '../signup/signup';
       ])
     ])
   ]
-})
-export class LoginPage {
-  logoState: any = "in";
-  cloudState: any = "in";
-  loginState: any = "in";
-  formState: any = "in";
-
+}  
+)
+export class SignupPage {
   @ViewChild('username') user;
   @ViewChild('password') password;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-    public alertCtrl: AlertController,private fire:AngularFireAuth ) {
-
-        
+  @ViewChild('password2') passwordre;
+  constructor(private alertCtrl: AlertController,private fire:AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
   }
+
   
   alert(message: string) {
     this.alertCtrl.create({
@@ -87,28 +80,30 @@ export class LoginPage {
     }).present();
   }
 
-  logInUser() {
-    this.fire.auth.signInWithEmailAndPassword(this.user.value + '@domian.xta', this.password.value)
-    .then( data => {
-      console.log('got some data', this.fire.auth.currentUser);
-      this.alert('Success! You\'re logged in');
-      this.navCtrl.setRoot( HomePage );
-      // user is logged in
-    })
-    .catch( error => {
-      console.log('got an error', error);
-      this.alert(error.message);
-    })
-  	console.log('Would sign in with ', this.user.value, this.password.value);
-  }
+  goback() {
+    this.navCtrl.pop();
+    console.log('Click on button Test Console Log');
+ }
 
-  signUpUser() {
-    this.navCtrl.push(SignupPage);
-  }
-  
+  signUpUser(){
+   if(this.password.value==this.passwordre.value){
+      this.fire.auth.createUserWithEmailAndPassword(this.user.value + '@domian.xta', this.password.value)
+      .then(data => {
+        console.log('got data ', data);
+        this.alert('Registered! Please Log In again');
+        this.navCtrl.setRoot( LoginPage );
+      })
+      .catch(error => {
+        console.log('got an error ', error);
+        this.alert(error.message);
+      });
+      console.log('Would register user with ', this.user.value, this.password.value);
+    }else{
+         this.alert('Passwords mismatched!');
+    }
+   }
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+    console.log('ionViewDidLoad SignupPage');
   }
 
 }
- 

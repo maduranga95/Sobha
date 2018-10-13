@@ -15,11 +15,12 @@ import { SettingsPage } from '../pages/settings/settings';
 import { LeaderboardPage } from '../pages/leaderboard/leaderboard';
 import { GroupPage } from '../pages/group/group';
 import { LogoutPage } from '../pages/logout/logout';
+import {CameraPage} from '../pages/camera/camera';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-
+import { AngularFireStorageModule } from 'angularfire2/storage';
 
 const firebaseAuth={
   apiKey: "AIzaSyDTT3kYRvkk4JL_8qquUpTzrMs9fHHontc",
@@ -40,7 +41,8 @@ const firebaseAuth={
     SettingsPage,
     GroupPage,
     LeaderboardPage,
-    LogoutPage
+    LogoutPage,
+    CameraPage
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,7 @@ const firebaseAuth={
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseAuth),
     AngularFireAuthModule,
-  
+    AngularFireStorageModule,
     BrowserAnimationsModule
     
   ],
@@ -62,6 +64,7 @@ const firebaseAuth={
     SettingsPage,
     LeaderboardPage,
     GroupPage,
+    CameraPage,
     LogoutPage
   ],
   providers: [

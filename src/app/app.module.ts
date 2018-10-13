@@ -14,11 +14,13 @@ import { SettingsPage } from '../pages/settings/settings';
 import { LeaderboardPage } from '../pages/leaderboard/leaderboard';
 import { GroupPage } from '../pages/group/group';
 import { LogoutPage } from '../pages/logout/logout';
+import {CameraPage} from '../pages/camera/camera';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule} from 'angularfire2/database';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 
 
 const firebaseAuth={
@@ -40,7 +42,8 @@ const firebaseAuth={
     SettingsPage,
     GroupPage,
     LeaderboardPage,
-    LogoutPage
+    LogoutPage,
+    CameraPage
   ],
   imports: [
     BrowserModule,
@@ -49,6 +52,7 @@ const firebaseAuth={
     AngularFireModule.initializeApp(firebaseAuth),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
     BrowserAnimationsModule
     
   ],
@@ -62,6 +66,7 @@ const firebaseAuth={
     SettingsPage,
     LeaderboardPage,
     GroupPage,
+    CameraPage,
     LogoutPage
   ],
   providers: [

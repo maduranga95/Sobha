@@ -18,6 +18,7 @@ import { LogoutPage } from '../pages/logout/logout';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule} from 'angularfire2/database';
 
 
 const firebaseAuth={
@@ -47,7 +48,7 @@ const firebaseAuth={
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseAuth),
     AngularFireAuthModule,
-  
+    AngularFireDatabaseModule,
     BrowserAnimationsModule
     
   ],

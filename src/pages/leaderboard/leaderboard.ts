@@ -1,6 +1,11 @@
+//import { dateValueRange } from 'ionic-angular/umd/util/datetime-util';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { AngularFireDatabase} from 'angularfire2/database';
+import firebase from 'firebase';
+//import { Observable, Subject } from 'rxjs';
+//import 'rxjs/add/operator/map';
+//import 'rxjs/add/operator/catch';
 /**
  * Generated class for the LeaderboardPage page.
  *
@@ -13,13 +18,38 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-leaderboard',
   templateUrl: 'leaderboard.html',
 })
-export class LeaderboardPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+export class LeaderboardPage {
+  username: string = '';
+  photocount: number =0;
+  s;
+  users: object[]=[];
+  sortedUsers: object[]=[];
+
+  constructor(public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams) {
+    let email =<string>(firebase.auth().currentUser.email);
+    this.username = (email.split('@'))[0];
+    //console.log(this.username); 
+    this.s = this.db.list('/users').valueChanges().subscribe(data => {
+      //console.log(data);
+      data.map(elem =>{
+        this.users.push(elem);
+        
+      })
+      console.log(this.users);
+    });
+    // this.users.sort((a,b): number =>{
+    //   if (a[].photocount < b.photocount) return -1;
+    //   if(a.photocount > b.photocount) return 1;
+    //   return 0;
+
+    // });
+   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LeaderboardPage');
+    //console.log('ionViewDidLoad LeaderboardPage');
   }
 
 }
+
+

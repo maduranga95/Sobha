@@ -3,7 +3,6 @@ import { Platform,Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-
 import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
 import { SettingsPage } from '../pages/settings/settings';
@@ -11,7 +10,7 @@ import { HomePage } from '../pages/home/home';
 import { LeaderboardPage } from '../pages/leaderboard/leaderboard';
 import { GroupPage } from '../pages/group/group';
 import { LogoutPage } from '../pages/logout/logout';
-
+import {CameraPage } from '../pages/camera/camera';
 @Component({
   templateUrl: 'app.html'
 })
@@ -34,6 +33,7 @@ export class MyApp {
       { title: 'Leaderboard', component: LeaderboardPage },
       { title: 'MyGroup', component: GroupPage },
       { title: 'Settings', component: SettingsPage },
+      { title: 'Camera', component: CameraPage },
       { title: 'Log Out', component: LogoutPage }
     ];
   }

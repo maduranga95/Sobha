@@ -17,9 +17,11 @@ import { LogoutPage } from '../pages/logout/logout';
 import {CameraPage} from '../pages/camera/camera';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { Camera } from '@ionic-native/camera';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+
 
 const firebaseAuth={
   apiKey: "AIzaSyDTT3kYRvkk4JL_8qquUpTzrMs9fHHontc",
@@ -41,7 +43,8 @@ const firebaseAuth={
     GroupPage,
     LeaderboardPage,
     LogoutPage,
-    CameraPage
+    CameraPage,
+    
   ],
   imports: [
     BrowserModule,
@@ -51,6 +54,7 @@ const firebaseAuth={
     AngularFireAuthModule,
     AngularFireStorageModule,
     BrowserAnimationsModule
+    
     
   ],
   bootstrap: [IonicApp],
@@ -64,11 +68,13 @@ const firebaseAuth={
     LeaderboardPage,
     GroupPage,
     CameraPage,
-    LogoutPage
+    LogoutPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    Camera,
+    
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

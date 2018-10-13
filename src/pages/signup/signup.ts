@@ -82,28 +82,28 @@ export class SignupPage {
 
   goback() {
     this.navCtrl.pop();
-    console.log('Click on button Test Console Log');
+    //console.log('Click on button Test Console Log');
  }
 
   signUpUser(){
    if(this.password.value==this.passwordre.value){
       this.fire.auth.createUserWithEmailAndPassword(this.user.value + '@domian.xta', this.password.value)
       .then(data => {
-        console.log('got data ', data);
+        //console.log('got data ', data);
         this.alert('Registered! Please Log In again');
         this.navCtrl.setRoot( LoginPage );
       })
       .catch(error => {
-        console.log('got an error ', error);
+        //console.log('got an error ', error);
         this.alert(error.message);
       });
-      console.log('Would register user with ', this.user.value, this.password.value);
+      //console.log('Would register user with ', this.user.value, this.password.value);
     }else{
          this.alert('Passwords mismatched!');
     }
    }
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SignupPage');
+    //console.log('ionViewDidLoad SignupPage');
   }
 
 }

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { Camera } from 'ionic-native';
-import firebase from 'firebase';
+
+import { AngularFireStorage } from 'angularfire2/storage';
 /**
  * Generated class for the CameraPage page.
  *
@@ -20,20 +21,21 @@ export class CameraPage {
   public myPhoto: any;
   public myPhotoURL: any;
  
-  constructor(public navCtrl: NavController) {
-    this.myPhotosRef = firebase.storage().ref('/Photos/');
+  constructor(public navCtrl: NavController, private storage : AngularFireStorage ) {
+    
   }
  
   takePhoto() {
     Camera.getPicture({
-      quality: 100,
+      quality: 50,
       destinationType: Camera.DestinationType.DATA_URL,
       sourceType: Camera.PictureSourceType.CAMERA,
-      encodingType: Camera.EncodingType.PNG,
+      encodingType: Camera.EncodingType.JPEG,
       saveToPhotoAlbum: true
     }).then(imageData => {
       this.myPhoto = imageData;
-      this.uploadPhoto();
+      this.uploadPhoto(this.myPhoto);
+      console.log("Done");
     }, error => {
       console.log("ERROR -> " + JSON.stringify(error));
     });
@@ -47,29 +49,22 @@ export class CameraPage {
       encodingType: Camera.EncodingType.PNG,
     }).then(imageData => {
       this.myPhoto = imageData;
-      this.uploadPhoto();
+      this.uploadPhoto(this.myPhoto);
     }, error => {
       console.log("ERROR -> " + JSON.stringify(error));
     });
   }
  
-  private uploadPhoto(): void {
-    this.myPhotosRef.child(this.generateUUID()).child('myPhoto.png')
-      .putString(this.myPhoto, 'base64', { contentType: 'image/png' })
-      .then((savedPicture) => {
-        this.myPhotoURL = savedPicture.downloadURL;
-      });
+  private uploadPhoto(e): void {
+    const filePath = 'photos/';
+    const reef = this.storage.ref(filePath);
+    const task = reef.put(e);
+    alert("Done!!!")
+
+
   }
  
-  private generateUUID(): any {
-    var d = new Date().getTime();
-    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx'.replace(/[xy]/g, function (c) {
-      var r = (d + Math.random() * 16) % 16 | 0;
-      d = Math.floor(d / 16);
-      return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-    });
-    return uuid;
-  }
+  
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CameraPage');

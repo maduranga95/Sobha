@@ -19,6 +19,7 @@ import {CameraPage} from '../pages/camera/camera';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 
 const firebaseAuth={
   apiKey: "AIzaSyDTT3kYRvkk4JL_8qquUpTzrMs9fHHontc",
@@ -48,7 +49,7 @@ const firebaseAuth={
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseAuth),
     AngularFireAuthModule,
-  
+    AngularFireStorageModule,
     BrowserAnimationsModule
     
   ],

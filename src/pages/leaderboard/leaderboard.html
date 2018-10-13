@@ -17,16 +17,11 @@
 
 
 <ion-content padding>
-    <ion-list>
-        <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-          <ion-icon [name]="item.icon" item-start></ion-icon>
-          {{item.title}}
-          <div class="item-note" item-end>
-            {{item.note}}
-          </div>
-        </button>
-      </ion-list>
-      <div *ngIf="selectedItem" padding>
-        You navigated here from <b>{{selectedItem.title}}</b>
-      </div>
+  <div id="leadership">
+    <div class="person" *ngFor='let user of users'>
+      <div class="username">{{user.name}}</div>
+      <div class="user">{{user.photocount}}</div>
+    </div>
+  </div>
+    
 </ion-content>

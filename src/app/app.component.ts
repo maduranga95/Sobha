@@ -12,6 +12,12 @@ import { LeaderboardPage } from '../pages/leaderboard/leaderboard';
 import { GroupPage } from '../pages/group/group';
 import { LogoutPage } from '../pages/logout/logout';
 
+
+
+
+import { NewgroupPage } from '../pages/newgroup/newgroup';
+import { OldgroupPage } from '../pages/oldgroup/oldgroup';
+
 @Component({
   templateUrl: 'app.html'
 })

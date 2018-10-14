@@ -14,11 +14,21 @@ import { SettingsPage } from '../pages/settings/settings';
 import { LeaderboardPage } from '../pages/leaderboard/leaderboard';
 import { GroupPage } from '../pages/group/group';
 import { LogoutPage } from '../pages/logout/logout';
+import { JoingroupPage } from '../pages/joingroup/joingroup';
+import { GroupdetailsPage } from '../pages/groupdetails/groupdetails';
+import { Groupdetails2Page } from '../pages/groupdetails2/groupdetails2';
+
+import { ChatPage } from '../pages/chat/chat';
+import { NewgroupPage } from '../pages/newgroup/newgroup';
+import { OldgroupPage } from '../pages/oldgroup/oldgroup';
+import { CommentsPage } from '../pages/comments/comments';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabase } from '@angular/fire/database';
 
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 const firebaseAuth={
   apiKey: "AIzaSyDTT3kYRvkk4JL_8qquUpTzrMs9fHHontc",
@@ -39,7 +49,14 @@ const firebaseAuth={
     SettingsPage,
     GroupPage,
     LeaderboardPage,
-    LogoutPage
+    LogoutPage,
+    NewgroupPage,
+    OldgroupPage,
+    JoingroupPage,
+    GroupdetailsPage,
+    Groupdetails2Page,
+    ChatPage,
+    CommentsPage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +64,8 @@ const firebaseAuth={
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseAuth),
     AngularFireAuthModule,
-  
+    //AngularFireDatabase,
+    AngularFireDatabaseModule,
     BrowserAnimationsModule
     
   ],
@@ -61,7 +79,14 @@ const firebaseAuth={
     SettingsPage,
     LeaderboardPage,
     GroupPage,
-    LogoutPage
+    LogoutPage,
+    NewgroupPage,
+    OldgroupPage,
+    JoingroupPage,
+    GroupdetailsPage,
+    Groupdetails2Page,
+    ChatPage,
+    CommentsPage
   ],
   providers: [
     StatusBar,

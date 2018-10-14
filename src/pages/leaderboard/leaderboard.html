@@ -16,11 +16,13 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content  >
+  <!-- <ion-scroll scrollY="true"> -->
 
 
-  <div class="leadership" id="cloud-layer">
-    <div class="person" *ngFor='let user of users; let i = index' [class]="i==0 ? 'personwin' : 'personnormal'">
+  <div class="leadership " style="overflow:auto" id="cloud-layer" >
+    <!-- <ion-scroll scrollX="true"> -->
+    <div class="person " *ngFor='let user of users; let i = index' [class]="i==0 ? 'personwin' : 'personnormal'">
       <div  [class]="i==1 ? 'bronce' : 'personnormal'">
       <div [class]="i==2 ? 'silver' : 'personnormal'">
       <ion-card>
@@ -33,7 +35,8 @@
       </div>
 
     </div>
+    <!-- </ion-scroll> -->
   </div>
 
-
+<!-- </ion-scroll> -->
 </ion-content>

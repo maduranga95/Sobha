@@ -88,7 +88,7 @@ export class LoginPage {
   }
 
   logInUser() {
-    this.fire.auth.signInWithEmailAndPassword(this.user.value + '@domian.xta', this.password.value)
+    this.fire.auth.signInWithEmailAndPassword(this.user.value, this.password.value)
     .then( data => {
       //console.log('got some data', this.fire.auth.currentUser);
       this.alert('Success! You\'re logged in');

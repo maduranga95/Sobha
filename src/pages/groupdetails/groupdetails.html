@@ -1,0 +1,34 @@
+<!--
+  Generated template for the GroupdetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>groupdetails</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div>
+    <h4>Group Name</h4>
+  <ion-item>
+    {{Name}}
+  </ion-item>
+  <h4>Admin</h4>
+  <ion-item>
+    {{Admin}}
+  </ion-item>
+    <h4>Participants</h4>
+    <ion-item *ngFor="let item of arr;let i=index">
+      {{item}}
+    </ion-item>
+    </div>
+  <div>
+      <button ion-button (click)="joinThis()">Join</button>
+    </div>
+</ion-content>

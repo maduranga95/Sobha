@@ -45,7 +45,7 @@ export class NewPostPage {
     public navCtrl: NavController
   ) {
     this.afAuth.authState.subscribe(user => {
-      if (user) this.userId = user.uid;
+      if (user) this.userId = JSON.parse(JSON.stringify(user)).Handle;
     });
 
     this.posts = this.db.list("/posts/");

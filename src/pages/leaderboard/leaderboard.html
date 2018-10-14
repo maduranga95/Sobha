@@ -6,22 +6,40 @@
 -->
 <ion-header>
 
-    <ion-navbar>
-        <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
-        <ion-title>Leaderboard</ion-title>
-      </ion-navbar>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Leaderboard</ion-title>
+  </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  <div id="leadership">
-    <div class="person" *ngFor='let user of users'>
-      <div class="username">{{user.name}}</div>
-      <div class="user">{{user.photocount}}</div>
+<ion-content  >
+  <!-- <ion-scroll scrollY="true"> -->
+
+
+  <div class="leadership " style="overflow:auto" id="cloud-layer" >
+    <!-- <ion-scroll scrollX="true"> -->
+    <div class="person " *ngFor='let user of users; let i = index' [class]="i==0 ? 'personwin' : 'personnormal'">
+      <div  [class]="i==1 ? 'bronce' : 'personnormal'">
+      <div [class]="i==2 ? 'silver' : 'personnormal'">
+      <ion-card>
+        <ion-card-content>
+          <div class="username">{{i+1}} . {{user.Handle}}</div>
+          <div class="user">{{user.photocount}}</div>
+        </ion-card-content>
+      </ion-card>
+      </div>
+      </div>
+
     </div>
+    <!-- </ion-scroll> -->
   </div>
-    
+
+
+
 </ion-content>
+
+

@@ -1,3 +1,39 @@
-page-leaderboard {
+.ios, .md {
 
+page-leaderboard{
+        .scroll-content {
+      background-color: #73FF72;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+        #cloud-layer {
+      background-image: url(../assets/imgs/green-background.jpg);
+      background-size:cover;
+      width: 100%;
+      height: 100%;
+    }
+ .username{
+ 	width: 80%;
+    float: left;
+ }
+ 
+ .user{
+ 	 width: 5%;
+     float: right;
+ }
+
+ .personwin{
+     background-color: rgb(255, 230, 2);
+     color: rgb(241, 139, 4);
+ }
+ .silver{
+     background-color: rgb(245, 126, 16);
+     color: rgb(241, 111, 4);
+ }
+ .bronce{
+     background-color: rgb(87, 87, 87);
+     color: rgb(49, 48, 59);
+ }
+}
 }

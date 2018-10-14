@@ -86,7 +86,7 @@ export class SignupPage {
 
   goback() {
     this.navCtrl.pop();
-    console.log('Click on button Test Console Log');
+    //console.log('Click on button Test Console Log');
  }
 
   signUpUser(){
@@ -105,20 +105,21 @@ export class SignupPage {
           UID: this.fire.auth.currentUser.uid,
           profilePicture:"https://firebasestorage.googleapis.com/v0/b/sobha-73684.appspot.com/o/defaultpic.png?alt=media&token=ce8fd8db-3125-4a92-935d-2c1862f7f400"
         });
+
         this.alert('Registered! Please Log In again');
         this.navCtrl.setRoot( LoginPage );
       })
       .catch(error => {
-        console.log('got an error ', error);
+        //console.log('got an error ', error);
         this.alert(error.message);
       });
-      console.log('Would register user with ', this.user.value, this.password.value);
+      //console.log('Would register user with ', this.user.value, this.password.value);
     }else{
          this.alert('Passwords mismatched!');
     }
    }
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SignupPage');
+    //console.log('ionViewDidLoad SignupPage');
   }
 
 }

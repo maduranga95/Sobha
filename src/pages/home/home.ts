@@ -1,3 +1,4 @@
+import { NewPostPage } from './../new-post/new-post';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
@@ -12,4 +13,7 @@ export class HomePage {
   }
   //doClick(){}
 
+  hi(){
+    this.navCtrl.push(NewPostPage);
+  }
 }

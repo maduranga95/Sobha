@@ -1,3 +1,5 @@
+import { Camera } from '@ionic-native/camera';
+import { NewPostPage } from './../pages/new-post/new-post';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -43,7 +45,8 @@ const firebaseAuth={
     GroupPage,
     LeaderboardPage,
     LogoutPage,
-    CameraPage
+    CameraPage,
+    NewPostPage
   ],
   imports: [
     BrowserModule,
@@ -67,12 +70,14 @@ const firebaseAuth={
     LeaderboardPage,
     GroupPage,
     CameraPage,
-    LogoutPage
+    LogoutPage,
+    NewPostPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Camera
   ]
 })
 export class AppModule {}

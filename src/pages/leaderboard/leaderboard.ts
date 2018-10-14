@@ -20,15 +20,15 @@ import firebase from 'firebase';
 })
 
 export class LeaderboardPage {
-  username: string = '';
+  // username: string = '';
   photocount: number =0;
   s;
   users: object[]=[];
   sortedUsers: object[]=[];
 
   constructor(public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams) {
-    let email =<string>(firebase.auth().currentUser.email);
-    this.username = (email.split('@'))[0];
+    // let email =<string>(firebase.auth().currentUser.email);
+    // this.username = (email.split('@'))[0];
     //console.log(this.username); 
     this.s = this.db.list('/users').valueChanges().subscribe(data => {
       //console.log(data);

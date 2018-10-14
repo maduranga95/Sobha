@@ -1,10 +1,16 @@
 .ios, .md {
 
 page-leaderboard{
+// .ion-scroll {
+//     white-space: nowrap;
+//     height: 500px;
+// }
         .scroll-content {
       background-color: #73FF72;
+     // background-image: url(../assets/imgs/green-background.jpg);
       display: flex;
       flex-direction: column;
+      //overflow-y: auto;
       overflow: hidden;
     }
         #cloud-layer {

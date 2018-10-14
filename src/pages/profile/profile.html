@@ -16,27 +16,28 @@
 </ion-header>
 
 <ion-content>
+cwewwfew
+  <div class ="test" *ngFor="let dp of profilePicture">
+  <ion-card >
 
-  <ion-card *ngFor="let dp of profilePicture | async">
-    <ion-card-header>
-      {{ dp.created | date:'medium' }}
-    </ion-card-header>
+    <!--ion-card-header>
+      {{ dp | date:'medium' }}
+    </ion-card-header-->
 
     <ion-card-content>
-
-      <button ion-button block icon-left outline (click)="viewDP(dp.url)">
+      <button ion-button block icon-left outline (click)="viewDP(dp)" >
         <ion-icon name="eye"></ion-icon>
-        {{ dp.fullPath }}
+        <img src={{dp}}>
       </button>
 
-      <button ion-button block outline icon-left color="danger" (click)="deleteProfilePicture(dp)">
+      <button ion-button block outline icon-left color="danger" (click)="deleteProfilePicture(dp)" >
         <ion-icon name="trash"></ion-icon> Delete
       </button>
 
     </ion-card-content>
 
   </ion-card>
-
+  </div>
   <ion-fab right bottom>
     <button ion-fab color="primary" (click)="addDP()">
       <ion-icon name="cloud-upload"></ion-icon>

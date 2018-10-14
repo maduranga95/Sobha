@@ -9,18 +9,38 @@ import { HttpClient } from '@angular/common/http';
 export class DataProvider {
 
   constructor(private db: AngularFireDatabase, private afStorage: AngularFireStorage, private angFAu: AngularFireAuth) { }
-  currentUser = this.angFAu.auth.currentUser;
+  currentUserMail = this.angFAu.auth.currentUser.email;
+
+
   getDP() {
-    let ref = this.db.list('/users/profilePictures');
-    return ref.snapshotChanges().map(changes => {
-      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-    });
+   var a;
+    this.db.list('users').valueChanges().forEach(element => {
+      element.forEach(entry =>{
+
+        if(entry['name'] == this.currentUserMail){
+          //console.log('1st if passed');
+          //console.log(this.currentUserMail);
+          console.log(typeof entry['profilePicture']);
+          //if(entry['profilePicture'] != undefined) {
+            a= entry['profilePicture'];
+          //}
+          //else{
+            //return 'https://firebasestorage.googleapis.com/v0/b/sobha-73684.appspot.com/o/ProfilePictures%2FdefaultDP.jpg?alt=media&token=2241fd15-c0ad-44de-bb03-3481da8bd20e';
+          }
+
+      })
+    })
+    return a;
+    //let ref = this.db.list('/users/profilePictures');
+    //return ref.snapshotChanges().map(changes => {
+      //return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    //});
   }
 
   uploadAsProfilePictureToStorage(information): AngularFireUploadTask {
     let newName = `${new Date().getTime()}.txt`;
 
-    return this.afStorage.ref(`ProfilePictures'/${newName}`).putString(information);
+    return this.afStorage.ref('ProfilePictures/${newName}').putString(information);
   }
 
   storeInfoToDatabase(metainfo) {

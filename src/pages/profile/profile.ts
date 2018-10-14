@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import { ToastController } from 'ionic-angular/components/toast/toast-controller';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+//import { PhotoViewer} from "@ionic-native/photo-viewer";
 
 /**
  * Generated class for the ProfilePage page.
@@ -23,17 +24,45 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 })
 
 export class ProfilePage {
-  users: Observable<any[]> ;
+  test: any;
+  users: any ;
   name: string ='';
-  profilePicture: any;
+  profilePicture: object[] = [];
+  currentUserMail = this.afAuth.auth.currentUser.email;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private iab: InAppBrowser ,
               private dataProvider: DataProvider, private alertCtrl: AlertController,
-              private toastCtrl: ToastController, private afAuth: AngularFireAuth) {
-    this.profilePicture = this.dataProvider.getDP();
+              private toastCtrl: ToastController, private afAuth: AngularFireAuth, private db: AngularFireDatabase) {
+    this.db.list('users').valueChanges().forEach(element => {
+      element.forEach(entry =>{
+        if(entry['name'] == this.currentUserMail){
+          console.log(entry['name']);
+          console.log(entry['profilePicture']);
+          this.profilePicture.push(entry['profilePicture']);
+        }
+      })
+    })
 
   }
-  addDP() {
+  viewDP(url){
+    this.iab.create(url);
+  }
+}
+   /* console.log('1st part');
+    this.profilePicture = this.getDP();
+    console.log(this.profilePicture);
+    this.db.list('users').valueChanges().forEach(element => {
+      element.forEach(entry => {
+        console.log(3);
+        if (entry['name'] == this.currentUserMail) {
+          console.log('if passed');
+          this.users = entry;
+        }
+
+      })
+    })
+  }
+  addDP(){
     let inputAlert = this.alertCtrl.create({
       title: 'Store new information',
       inputs: [
@@ -71,9 +100,9 @@ export class ProfilePage {
   toast.present();
 });
 });
-}
+}*/
 
-deleteProfilePicture(file) {
+/*deleteProfilePicture(file) {
   this.dataProvider.deleteProfilePicture(file).subscribe(() => {
     let toast = this.toastCtrl.create({
       message: 'File removed!',
@@ -83,10 +112,41 @@ deleteProfilePicture(file) {
   });
 }
   viewDP(url) {
-    this.iab.create(url);
+    console.log('entered iab');
+    this.iab.create(url,'_self');
+    console.log('got out');
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
-  }
+  }*/
+   //getDP() {
 
-}
+    //this.db.list('users').valueChanges().forEach(element => {
+
+      //element.forEach(entry =>{
+
+        //if(entry['name'] == this.currentUserMail){
+
+          //console.log('1st if passed');
+          //console.log(this.currentUserMail);
+          //console.log(entry['profilePicture']);
+          //if(entry['profilePicture'] != undefined) {
+
+          //this.test = entry['profilePicture'];
+          //}
+          //else{
+          //return 'https://firebasestorage.googleapis.com/v0/b/sobha-73684.appspot.com/o/ProfilePictures%2FdefaultDP.jpg?alt=media&token=2241fd15-c0ad-44de-bb03-3481da8bd20e';
+       // }
+
+     // })
+   // })
+
+    //console.log(this.test);
+    //return this.test;
+    //let ref = this.db.list('/users/profilePictures');
+    //return ref.snapshotChanges().map(changes => {
+    //return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    //});
+ // }
+//}
+

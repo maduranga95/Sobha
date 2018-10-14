@@ -16,15 +16,31 @@ import { SettingsPage } from '../pages/settings/settings';
 import { LeaderboardPage } from '../pages/leaderboard/leaderboard';
 import { GroupPage } from '../pages/group/group';
 import { LogoutPage } from '../pages/logout/logout';
+
+import { JoingroupPage } from '../pages/joingroup/joingroup';
+import { GroupdetailsPage } from '../pages/groupdetails/groupdetails';
+import { Groupdetails2Page } from '../pages/groupdetails2/groupdetails2';
+
+import { ChatPage } from '../pages/chat/chat';
+import { NewgroupPage } from '../pages/newgroup/newgroup';
+import { OldgroupPage } from '../pages/oldgroup/oldgroup';
+import { CommentsPage } from '../pages/comments/comments';
+
 import {CameraPage} from '../pages/camera/camera';
+
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+
+import { AngularFireDatabase } from '@angular/fire/database';
+
 import { AngularFireDatabaseModule} from 'angularfire2/database';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 
 
+//import { AngularFireDatabaseModule } from 'angularfire2/database';
+https://github.com/maduranga95/Sobha/pull/16/conflict?name=src%252Fpages%252Fhome%252Fhome.html&ancestor_oid=ef60ca29b8d6af50c75728d7e591e64ff2bb62fa&base_oid=a350c8c41fad2e8b5b7fa648cb09b9081822135d&head_oid=ce91c5491f26da2b2468d496aa938556f474dec7
 const firebaseAuth={
   apiKey: "AIzaSyDTT3kYRvkk4JL_8qquUpTzrMs9fHHontc",
   authDomain: "sobha-73684.firebaseapp.com",
@@ -45,8 +61,17 @@ const firebaseAuth={
     GroupPage,
     LeaderboardPage,
     LogoutPage,
-    CameraPage,
-    NewPostPage
+
+    NewPostPage,
+
+    NewgroupPage,
+    OldgroupPage,
+    JoingroupPage,
+    GroupdetailsPage,
+    Groupdetails2Page,
+    ChatPage,
+    CommentsPage,
+    CameraPage
   ],
   imports: [
     BrowserModule,
@@ -56,6 +81,7 @@ const firebaseAuth={
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFireStorageModule,
+
     BrowserAnimationsModule
     
   ],
@@ -69,7 +95,16 @@ const firebaseAuth={
     SettingsPage,
     LeaderboardPage,
     GroupPage,
+
+    NewgroupPage,
+    OldgroupPage,
+    JoingroupPage,
+    GroupdetailsPage,
+    Groupdetails2Page,
+    ChatPage,
+    CommentsPage,
     CameraPage,
+
     LogoutPage,
     NewPostPage
   ],

@@ -6,22 +6,29 @@
 -->
 <ion-header>
 
-    <ion-navbar>
-        <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
-        <ion-title>Leaderboard</ion-title>
-      </ion-navbar>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Leaderboard</ion-title>
+  </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding id="cloud-layer">
+
+
   <div id="leadership">
-    <div class="person" *ngFor='let user of users'>
-      <div class="username">{{user.name}}</div>
-      <div class="user">{{user.photocount}}</div>
+    <div class="person" *ngFor='let user of users; let i = index' [class]="i==0 ? 'personwin' : 'personnormal'">
+      <ion-card>
+        <ion-card-content>
+          <div class="username">{{i+1}} . {{user.name}}</div>
+          <div class="user">{{user.photocount}}</div>
+        </ion-card-content>
+      </ion-card>
     </div>
   </div>
-    
+
+
 </ion-content>

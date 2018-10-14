@@ -10,7 +10,10 @@ import { HomePage } from '../pages/home/home';
 import { LeaderboardPage } from '../pages/leaderboard/leaderboard';
 import { GroupPage } from '../pages/group/group';
 import { LogoutPage } from '../pages/logout/logout';
+import { NewgroupPage } from '../pages/newgroup/newgroup';
+import { OldgroupPage } from '../pages/oldgroup/oldgroup';
 import {CameraPage } from '../pages/camera/camera';
+
 @Component({
   templateUrl: 'app.html'
 })

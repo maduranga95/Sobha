@@ -1,6 +1,7 @@
 import { Component,trigger, state, style, transition, animate, keyframes, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { LoginPage } from '../login/login';
 /**
  * Generated class for the SignupPage page.
@@ -68,7 +69,10 @@ export class SignupPage {
   @ViewChild('username') user;
   @ViewChild('password') password;
   @ViewChild('password2') passwordre;
-  constructor(private alertCtrl: AlertController,private fire:AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+  @ViewChild('handle') handle;
+  temp;
+  constructor(private db:AngularFireDatabase,private alertCtrl: AlertController,private fire:AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+     this.temp=true;
   }
 
   
@@ -86,10 +90,22 @@ export class SignupPage {
  }
 
   signUpUser(){
+    
+   
    if(this.password.value==this.passwordre.value){
-      this.fire.auth.createUserWithEmailAndPassword(this.user.value + '@domian.xta', this.password.value)
+      this.fire.auth.createUserWithEmailAndPassword(this.user.value, this.password.value)
       .then(data => {
-        //console.log('got data ', data);
+        // console.log('got data ', data);
+        const itemsRef = this.db.list('users');
+        itemsRef.push({ 
+          name: this.user.value,
+          group: 'null',
+          photocount:0,
+          Handle:this.handle.value,
+          UID: this.fire.auth.currentUser.uid,
+          profilePicture:"https://firebasestorage.googleapis.com/v0/b/sobha-73684.appspot.com/o/defaultpic.png?alt=media&token=ce8fd8db-3125-4a92-935d-2c1862f7f400"
+        });
+
         this.alert('Registered! Please Log In again');
         this.navCtrl.setRoot( LoginPage );
       })

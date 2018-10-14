@@ -23,7 +23,7 @@
     <div class="person" *ngFor='let user of users; let i = index' [class]="i==0 ? 'personwin' : 'personnormal'">
       <ion-card>
         <ion-card-content>
-          <div class="username">{{i+1}} . {{user.name}}</div>
+          <div class="username">{{i+1}} . {{user.Handle}}</div>
           <div class="user">{{user.photocount}}</div>
         </ion-card-content>
       </ion-card>

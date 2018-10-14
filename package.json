@@ -30,7 +30,6 @@
     "@ngx-translate/core": "^10.0.2",
     "@ngx-translate/http-loader": "^0.1.0",
     "angularfire2": "^5.0.2",
-    //"com-sarriaroman-photoviewer": "1.1.18",
     "cordova-android": "^7.1.1",
     "cordova-plugin-camera": "4.0.3",
     "cordova-plugin-device": "^2.0.2",
@@ -65,7 +64,6 @@
       },
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-camera": {}
-      //"com-sarriaroman-photoviewer": {}
     },
     "platforms": [
       "android"

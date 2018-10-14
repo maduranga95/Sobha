@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import { ToastController } from 'ionic-angular/components/toast/toast-controller';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-//import { PhotoViewer} from "@ionic-native/photo-viewer";
+import { AngularFireStorage} from "@angular/fire/storage";
 
 /**
  * Generated class for the ProfilePage page.
@@ -24,14 +24,15 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 })
 
 export class ProfilePage {
-  test: any;
-  users: any ;
-  name: string ='';
+  groups: object[] = [];
+  users: object[] = [] ;
+  names: object[] = [];
+  emails: object[] = [];
   profilePicture: object[] = [];
   currentUserMail = this.afAuth.auth.currentUser.email;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private iab: InAppBrowser ,
-              private dataProvider: DataProvider, private alertCtrl: AlertController,
+              private dataProvider: DataProvider, private alertCtrl: AlertController, private afStorage: AngularFireStorage,
               private toastCtrl: ToastController, private afAuth: AngularFireAuth, private db: AngularFireDatabase) {
     this.db.list('users').valueChanges().forEach(element => {
       element.forEach(entry =>{
@@ -43,9 +44,45 @@ export class ProfilePage {
       })
     })
 
+    this.db.list('users').valueChanges().forEach(element => {
+      element.forEach(entry =>{
+        if(entry['name'] == this.currentUserMail){
+          console.log(entry['name']);
+          console.log(entry['Handle']);
+          this.names.push(entry['Handle']);
+        }
+      })
+    })
+
+    this.db.list('users').valueChanges().forEach(element => {
+      element.forEach(entry =>{
+        if(entry['name'] == this.currentUserMail){
+          console.log(entry['name']);
+          this.emails.push(entry['name']);
+        }
+      })
+    })
+
+
   }
   viewDP(url){
     this.iab.create(url);
+  }
+
+  deleteProfilePicture(url) {
+    //let key = file.key;
+    //let storagePath = file.fullPath;
+
+    this.db.list('users',ref => ref.orderByChild('name').equalTo(this.currentUserMail)).snapshotChanges().subscribe(actions =>{
+      console.log('ghghgh')
+      actions.forEach(action => {
+        console.log(action.key);
+        this.db.list('users').update(action.key, {profilePicture: "https://firebasestorage.googleapis.com/v0/b/sobha-73684.appspot.com/o/defaultpic.png?alt=media&token=ce8fd8db-3125-4a92-935d-2c1862f7f400"})
+      })
+    });
+
+
+    return this.afStorage.ref(url).delete();
   }
 }
    /* console.log('1st part');

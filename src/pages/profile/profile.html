@@ -16,7 +16,7 @@
 </ion-header>
 
 <ion-content>
-cwewwfew
+
   <div class ="test" *ngFor="let dp of profilePicture">
   <ion-card >
 
@@ -33,11 +33,32 @@ cwewwfew
       <button ion-button block outline icon-left color="danger" (click)="deleteProfilePicture(dp)" >
         <ion-icon name="trash"></ion-icon> Delete
       </button>
-
     </ion-card-content>
 
   </ion-card>
   </div>
+
+  <div class ="username item-text-wrap" *ngFor="let name of names" >
+    <ion-card >
+      <ion-card-content>
+
+          <ion-icon name="document"></ion-icon>
+          User Name <p>{{name}}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div class ="email item-text-wrap" *ngFor="let email of emails" >
+    <ion-card >
+      <ion-card-content>
+
+        <ion-icon name="document"></ion-icon>
+        User Email <p>{{email}}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+
   <ion-fab right bottom>
     <button ion-fab color="primary" (click)="addDP()">
       <ion-icon name="cloud-upload"></ion-icon>

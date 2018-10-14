@@ -32,18 +32,27 @@ export class LeaderboardPage {
     //console.log(this.username); 
     this.s = this.db.list('/users').valueChanges().subscribe(data => {
       //console.log(data);
+      this.users =[];
       data.map(elem =>{
         this.users.push(elem);
-        
+        //console.log(this.users);
       })
-      console.log(this.users);
-    });
-    // this.users.sort((a,b): number =>{
-    //   if (a[].photocount < b.photocount) return -1;
-    //   if(a.photocount > b.photocount) return 1;
-    //   return 0;
 
-    // });
+      this.users.sort((a,b): number =>{
+        if (a['photocount'] < b['photocount']) return -1;
+        if (a['photocount'] > b['photocount']) return 1;
+      return 0;
+      });
+      //console.log(this.users);
+      this.users.reverse();
+      // var i;
+      // for(i in this.users){
+      //   this.sortedUsers.push(i['name']);
+      // }
+      // console.log(this.sortedUsers);
+    }); 
+    // this.sortedUsers = this.users.sort((n1, n2) => n1[2] - n2[2]);
+    //console.log(this.users);
    }
 
   ionViewDidLoad() {

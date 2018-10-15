@@ -15,8 +15,84 @@
 
 </ion-header>
 
+<ion-content>
 
-<ion-content padding>
+  <div class ="test" *ngFor="let dp of profilePicture">
+  <ion-card >
+
+    <!--ion-card-header>
+      {{ dp | date:'medium' }}
+    </ion-card-header-->
+
+    <ion-card-content>
+      <button ion-button block icon-left outline (click)="viewDP(dp)" >
+        <ion-icon name="eye"></ion-icon>
+        <img src={{dp}}>
+      </button>
+
+      <button ion-button block outline icon-left color="danger" (click)="deleteProfilePicture(dp)" >
+        <ion-icon name="trash"></ion-icon> Delete
+      </button>
+    </ion-card-content>
+
+  </ion-card>
+  </div>
+
+  <div class ="username item-text-wrap" *ngFor="let name of names" >
+    <ion-card >
+      <ion-card-content>
+
+          <ion-icon name="document"></ion-icon>
+          User Name <p>{{name}}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div class ="email item-text-wrap" *ngFor="let email of emails" >
+    <ion-card >
+      <ion-card-content>
+
+        <ion-icon name="document"></ion-icon>
+        User Email <p>{{email}}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+
+  <ion-fab right bottom>
+    <button ion-fab color="primary" (click)="addDP()">
+      <ion-icon name="cloud-upload"></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-content>
+
+
+
+
+<!--ion-content padding>
+  <div id="profile">
+    <div class="profile_details" *ngFor='let user of users'>
+      <ion-card>
+        <ion-card-content>
+          <div class="pro_pic" <a href = "{{user.profilepic}}}"></a>></div>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-content>
+          div class="username">{{user.name}}</div>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-content>
+          <div class="group">{{user.group}}</div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+
+</ion-content-->
+<!--ion-content padding>
     <ion-list>
         <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
           <ion-icon [name]="item.icon" item-start></ion-icon>
@@ -29,4 +105,5 @@
       <div *ngIf="selectedItem" padding>
         You navigated here from <b>{{selectedItem.title}}</b>
       </div>
-</ion-content>
+</ion-content-->
+

@@ -88,27 +88,29 @@ export class LoginPage {
   }
 
   logInUser() {
-    this.fire.auth.signInWithEmailAndPassword(this.user.value + '@domian.xta', this.password.value)
+    this.fire.auth.signInWithEmailAndPassword(this.user.value, this.password.value)
     .then( data => {
-      console.log('got some data', this.fire.auth.currentUser);
+      //console.log('got some data', this.fire.auth.currentUser);
       this.alert('Success! You\'re logged in');
       this.navCtrl.setRoot( HomePage );
       // user is logged in
     })
     .catch( error => {
-      console.log('got an error', error);
+      //console.log('got an error', error);
       this.alert(error.message);
     })
-  	console.log('Would sign in with ', this.user.value, this.password.value);
+  	//console.log('Would sign in with ', this.user.value, this.password.value);
   }
 
   signUpUser() {
     this.navCtrl.push(SignupPage);
   }
   
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
+  //ionViewDidLoad() {
+    //console.log('ionViewDidLoad LoginPage');
+  //}
 
 }
+
+
  

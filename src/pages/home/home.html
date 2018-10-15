@@ -5,11 +5,66 @@
         </button>
         <ion-title>Home</ion-title>
       </ion-navbar>
+      
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+  <div class="header-image"></div>
+ 
+    <div class="main-content">
+ 
+       <!-- <ion-segment [(ngModel)]="category">
+            <ion-segment-button value="gear">
+                Gear
+            </ion-segment-button>
+            <ion-segment-button value="clothing">
+                Clothing
+            </ion-segment-button>
+            <ion-segment-button value="nutrition">
+                Nutrition
+            </ion-segment-button>
+        </ion-segment>-->
+ 
+        <ion-card *ngFor="let card of arr.slice().reverse(); let index=index">
+ 
+          <ion-item>
+            <!--<ion-avatar item-left>
+              <img src="https://avatars.io/facebook/joshua.morony" />
+            </ion-avatar>-->
+            <h2>{{card['Name']}}</h2>
+            <p>{{card['Date']}}</p>
+     
+          </ion-item>
+ 
+          <img src={{temp[temp.length-1-index]}} />
+ 
+          <ion-card-content>
+            {{card['Description']}}
+          </ion-card-content>
+ 
+          <ion-row>
+            <ion-col>
+              <button ion-button icon-left clear small (click)="like(index)">
+                <ion-icon name="thumbs-up"></ion-icon>
+                <div>{{card['Likes']}} Likes</div>
+              </button>
+            </ion-col>
+            <ion-col>
+              <button ion-button icon-left clear small (click)="comment(index)">
+                <ion-icon name="text"></ion-icon>
+                <div>{{card['Comments']}} Comments</div>
+              </button>
+            </ion-col>
+            <ion-col center text-center>
+              <ion-note>
+                
+              </ion-note>
+            </ion-col>
+          </ion-row>
+ 
+        </ion-card>
+ 
+    </div>
 </ion-content>
+

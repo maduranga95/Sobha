@@ -46,9 +46,8 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { DataProvider } from '../providers/data/data';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
-
 //import { AngularFireDatabaseModule } from 'angularfire2/database';
-https://github.com/maduranga95/Sobha/pull/16/conflict?name=src%252Fpages%252Fhome%252Fhome.html&ancestor_oid=ef60ca29b8d6af50c75728d7e591e64ff2bb62fa&base_oid=a350c8c41fad2e8b5b7fa648cb09b9081822135d&head_oid=ce91c5491f26da2b2468d496aa938556f474dec7
+//https://github.com/maduranga95/Sobha/pull/16/conflict?name=src%252Fpages%252Fhome%252Fhome.html&ancestor_oid=ef60ca29b8d6af50c75728d7e591e64ff2bb62fa&base_oid=a350c8c41fad2e8b5b7fa648cb09b9081822135d&head_oid=ce91c5491f26da2b2468d496aa938556f474dec7
 const firebaseAuth={
   apiKey: "AIzaSyDTT3kYRvkk4JL_8qquUpTzrMs9fHHontc",
   authDomain: "sobha-73684.firebaseapp.com",

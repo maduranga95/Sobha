@@ -1,3 +1,4 @@
+import { NewPostPage } from './../new-post/new-post';
 import { Component } from '@angular/core';
 import { NavController,AlertController } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -155,6 +156,7 @@ export class HomePage {
 
   
   //doClick(){}
+
 
   comment(i) {
     this.w=this.temp[this.temp.length-1-i];

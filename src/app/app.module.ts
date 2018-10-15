@@ -1,3 +1,5 @@
+import { Camera } from '@ionic-native/camera';
+import { NewPostPage } from './../pages/new-post/new-post';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -29,7 +31,12 @@ import {CameraPage} from '../pages/camera/camera';
 
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { AngularFireModule } from 'angularfire2';
+
+import { AngularFireModule } from '@angular/fire';
+
+import { Camera } from '@ionic-native/camera';
+
+
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AngularFireDatabase } from '@angular/fire/database';
@@ -40,7 +47,7 @@ import { DataProvider } from '../providers/data/data';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 //import { AngularFireDatabaseModule } from 'angularfire2/database';
-
+//https://github.com/maduranga95/Sobha/pull/16/conflict?name=src%252Fpages%252Fhome%252Fhome.html&ancestor_oid=ef60ca29b8d6af50c75728d7e591e64ff2bb62fa&base_oid=a350c8c41fad2e8b5b7fa648cb09b9081822135d&head_oid=ce91c5491f26da2b2468d496aa938556f474dec7
 const firebaseAuth={
   apiKey: "AIzaSyDTT3kYRvkk4JL_8qquUpTzrMs9fHHontc",
   authDomain: "sobha-73684.firebaseapp.com",
@@ -61,7 +68,7 @@ const firebaseAuth={
     GroupPage,
     LeaderboardPage,
     LogoutPage,
-
+    NewPostPage,
     NewgroupPage,
     OldgroupPage,
     JoingroupPage,
@@ -79,9 +86,7 @@ const firebaseAuth={
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFireStorageModule,
-
     BrowserAnimationsModule
-
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -102,13 +107,15 @@ const firebaseAuth={
     ChatPage,
     CommentsPage,
     CameraPage,
-    LogoutPage
+    LogoutPage,
+    NewPostPage
 
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Camera
     DataProvider,
     InAppBrowser
   ]

@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 // import { HttpClient, HttpClientModule } from '@angular/common/http';
 
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
@@ -35,7 +36,8 @@ import { AngularFireDatabase } from '@angular/fire/database';
 
 import { AngularFireDatabaseModule} from 'angularfire2/database';
 import { AngularFireStorageModule } from 'angularfire2/storage';
-
+import { DataProvider } from '../providers/data/data';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 //import { AngularFireDatabaseModule } from 'angularfire2/database';
 
@@ -79,7 +81,7 @@ const firebaseAuth={
     AngularFireStorageModule,
 
     BrowserAnimationsModule
-    
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -106,7 +108,9 @@ const firebaseAuth={
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DataProvider,
+    InAppBrowser
   ]
 })
 export class AppModule {}

@@ -83,19 +83,19 @@ export class GroupdetailsPage {
     });
 
 
-    this.db.list('groups', ref => ref.orderByChild('Name').equalTo(this.Name)).snapshotChanges()
-    .subscribe(actions => {
-        actions.forEach(action => {
-          // here you get the key
-          this.gid=action.key;
-          this.db.list('groups/'+this.gid+'/chat').push({
-            specialMessage: true,
-            message:  this.fire.auth.currentUser.email+'joins the group'
-          });
-          //this.messages = this.db.list('/groups/'+this.gid+'/chat').valueChanges();
-          //this.db.list('users').update(action.key, { group: this.Name.value });
-        });
-    });
+    // this.db.list('groups', ref => ref.orderByChild('Name').equalTo(this.Name)).snapshotChanges()
+    // .subscribe(actions => {
+    //     actions.forEach(action => {
+    //       // here you get the key
+    //       this.gid=action.key;
+    //       this.db.list('groups/'+this.gid+'/chat').push({
+    //         specialMessage: true,
+    //         message:  this.fire.auth.currentUser.email+'joins the group'
+    //       });
+    //       //this.messages = this.db.list('/groups/'+this.gid+'/chat').valueChanges();
+    //       //this.db.list('users').update(action.key, { group: this.Name.value });
+    //     });
+    // });
   }
 
 }

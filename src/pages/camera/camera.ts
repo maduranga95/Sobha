@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
-import { Camera } from 'ionic-native';
+import { Camera, CameraOptions} from '@ionic-native/camera';
 
-import { AngularFireStorage } from 'angularfire2/storage';
+import { AngularFireStorage } from '@angular/fire/storage';
+import {DomSanitizer} from '@angular/platform-browser';
 /**
  * Generated class for the CameraPage page.
  *
@@ -21,49 +22,41 @@ export class CameraPage {
   public myPhoto: any;
   public myPhotoURL: any;
  
-  constructor(public navCtrl: NavController, private storage : AngularFireStorage ) {
+  constructor(public navCtrl: NavController, private camera : Camera, private storage : AngularFireStorage, private sanitizer:DomSanitizer) {
     
   }
- 
-  takePhoto() {
-    Camera.getPicture({
+  
+  uploadFile() {
+    
+    const myPhotosRef = 'photos/';
+    const ref = this.storage.ref(myPhotosRef);
+    const task = ref.put(this.myPhoto);
+    console.log(task);
+  }
+
+  takeImage(){
+    const options: CameraOptions = {
       quality: 50,
-      destinationType: Camera.DestinationType.DATA_URL,
-      sourceType: Camera.PictureSourceType.CAMERA,
-      encodingType: Camera.EncodingType.JPEG,
-      saveToPhotoAlbum: true
-    }).then(imageData => {
-      this.myPhoto = imageData;
-      this.uploadPhoto(this.myPhoto);
-      console.log("Done");
-    }, error => {
-      console.log("ERROR -> " + JSON.stringify(error));
-    });
-  }
- 
-  selectPhoto(): void {
-    Camera.getPicture({
-      sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-      destinationType: Camera.DestinationType.DATA_URL,
-      quality: 100,
-      encodingType: Camera.EncodingType.PNG,
-    }).then(imageData => {
-      this.myPhoto = imageData;
-      this.uploadPhoto(this.myPhoto);
-    }, error => {
-      console.log("ERROR -> " + JSON.stringify(error));
-    });
-  }
- 
-  private uploadPhoto(e): void {
-    const filePath = 'photos/';
-    const reef = this.storage.ref(filePath);
-    const task = reef.put(e);
-    alert("Done!!!")
+      
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
 
-
+    this.camera.getPicture(options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64 (DATA_URL):
+      this.myPhoto = 'data:image/jpeg;base64,' + imageData;
+      console.log(this.myPhoto);
+      this.uploadFile();
+     }, (err) => {
+      // Handle error
+     });
   }
- 
+  showImage(){
+    const sanitizedContent = this.sanitizer.bypassSecurityTrustUrl(this.myPhoto);
+    return sanitizedContent;
+ }
   
 
   ionViewDidLoad() {

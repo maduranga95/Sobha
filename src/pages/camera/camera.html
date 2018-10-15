@@ -20,7 +20,7 @@
   <ion-item>
     <ion-row>
       <ion-col width-50>
-        <button ion-button color="danger" type="button" full round large (click)="takePhoto()">
+        <button ion-button color="danger" type="button" full round large (click)="takeImage()">
                     <ion-icon name="md-camera"></ion-icon>
                 </button>
       </ion-col>
@@ -31,7 +31,8 @@
       </ion-col>
     </ion-row>
   </ion-item>
-  <ion-item>
-    <img class="img-responsive" src="{{ myPhotoURL }}" />
-  </ion-item>
+  <p>
+    <img class="img-responsive"  [src]=showImage() />
+  </p>
+    
 </ion-content>

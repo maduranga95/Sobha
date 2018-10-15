@@ -35,7 +35,7 @@ export class ChatPage {
         //console.log(entry['Name']);
         if(entry['name']==this.username){
                 this.handle=entry['Handle'];
-                this.pic=entry['profilePicture']
+                this.pic=entry['profilePicture'];
                 //this.navCtrl.setRoot(NewgroupPage);
                  //console.log(this.groupname);
         }

@@ -40,7 +40,7 @@ export class DataProvider {
   uploadAsProfilePictureToStorage(information): AngularFireUploadTask {
     let newName = `${new Date().getTime()}.txt`;
 
-    return this.afStorage.ref('ProfilePictures/${newName}').putString(information);
+    return this.afStorage.ref('/${newName}').putString(information);
   }
 
   storeInfoToDatabase(metainfo) {

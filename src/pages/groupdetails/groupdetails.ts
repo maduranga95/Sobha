@@ -22,7 +22,7 @@ export class GroupdetailsPage {
   arr=[];
   constructor(private fire:AngularFireAuth,private db:AngularFireDatabase,public navCtrl: NavController, public navParams: NavParams) {
     this.Name=navParams.get('groupName');
-    
+
     // this.db.list('/groups', ref=>ref.orderByChild("Name").equalTo(this.Name)).snapshotChanges().map(
     //   action => {
     //     console.log(this.Name);
@@ -32,21 +32,21 @@ export class GroupdetailsPage {
     //   });
     this.db.list('/groups').valueChanges().forEach(element => {
       element.forEach(entry=>{
-        
+
         //console.log(entry['Name']);
         if(entry['Name']==this.Name){
                 this.Admin=entry['Owner'];
-                
+
                 //this.navCtrl.setRoot(NewgroupPage);
                  //console.log(this.groupname);
         }
-        
+
       });
-    });  
-    
+    });
+
     this.db.list('/users').valueChanges().forEach(element => {
       element.forEach(entry=>{
-      
+
         //console.log(entry);
         if(entry['group']==this.Name){
                 //this.Admin=entry['Owner'];
@@ -54,15 +54,15 @@ export class GroupdetailsPage {
                 //this.navCtrl.setRoot(NewgroupPage);
                  //console.log(this.groupname);
         }
-        
+
       });
-    });  
+    });
 
     // this.db.list('groups').valueChanges().subscribe(data=>{
     //   data.forEach(element => {
     //     this.arr.push(element['Name']);
     //   });
-        
+
     // });
   }
 
@@ -77,25 +77,25 @@ export class GroupdetailsPage {
         actions.forEach(action => {
           // here you get the key
          // console.log(action.key);
-          
+
           this.db.list('users').update(action.key, { group: this.Name });
         });
     });
 
 
-    this.db.list('groups', ref => ref.orderByChild('Name').equalTo(this.Name)).snapshotChanges()
-    .subscribe(actions => {
-        actions.forEach(action => {
-          // here you get the key
-          this.gid=action.key;
-          this.db.list('groups/'+this.gid+'/chat').push({
-            specialMessage: true,
-            message:  this.fire.auth.currentUser.email+'joins the group'
-          });
-          //this.messages = this.db.list('/groups/'+this.gid+'/chat').valueChanges();
-          //this.db.list('users').update(action.key, { group: this.Name.value });
-        });
-    });
+    // this.db.list('groups', ref => ref.orderByChild('Name').equalTo(this.Name)).snapshotChanges()
+    // .subscribe(actions => {
+    //     actions.forEach(action => {
+    //       // here you get the key
+    //       this.gid=action.key;
+    //       this.db.list('groups/'+this.gid+'/chat').push({
+    //         specialMessage: true,
+    //         message:  this.fire.auth.currentUser.email+'joins the group'
+    //       });
+    //       //this.messages = this.db.list('/groups/'+this.gid+'/chat').valueChanges();
+    //       //this.db.list('users').update(action.key, { group: this.Name.value });
+    //     });
+    // });
   }
 
 }

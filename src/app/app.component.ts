@@ -35,7 +35,7 @@ export class MyApp {
       { title: 'Profile', component: ProfilePage },
       { title: 'Leaderboard', component: LeaderboardPage },
       { title: 'MyGroup', component: GroupPage },
-      { title: 'Settings', component: SettingsPage },
+     // { title: 'Settings', component: SettingsPage },
       { title: 'Camera', component: CameraPage },
       { title: 'Log Out', component: LogoutPage }
     ];

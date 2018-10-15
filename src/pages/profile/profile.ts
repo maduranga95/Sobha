@@ -25,28 +25,31 @@ import { AngularFireStorage} from "@angular/fire/storage";
 
 export class ProfilePage {
   groups: object[] = [];
-  users: object[] = [] ;
+  users: object[] = [];
   names: object[] = [];
   emails: object[] = [];
   profilePicture: object[] = [];
   currentUserMail = this.afAuth.auth.currentUser.email;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private iab: InAppBrowser ,
+  constructor(public navCtrl: NavController, public navParams: NavParams, private iab: InAppBrowser,
               private dataProvider: DataProvider, private alertCtrl: AlertController, private afStorage: AngularFireStorage,
               private toastCtrl: ToastController, private afAuth: AngularFireAuth, private db: AngularFireDatabase) {
     this.db.list('users').valueChanges().forEach(element => {
-      element.forEach(entry =>{
-        if(entry['name'] == this.currentUserMail){
+      this.profilePicture = [];
+      element.forEach(entry => {
+        if (entry['name'] == this.currentUserMail) {
           console.log(entry['name']);
           console.log(entry['profilePicture']);
           this.profilePicture.push(entry['profilePicture']);
+          console.log(entry['profilePicture'])
         }
       })
     })
 
     this.db.list('users').valueChanges().forEach(element => {
-      element.forEach(entry =>{
-        if(entry['name'] == this.currentUserMail){
+      this.names = [];
+      element.forEach(entry => {
+        if (entry['name'] == this.currentUserMail) {
           console.log(entry['name']);
           console.log(entry['Handle']);
           this.names.push(entry['Handle']);
@@ -55,8 +58,9 @@ export class ProfilePage {
     })
 
     this.db.list('users').valueChanges().forEach(element => {
-      element.forEach(entry =>{
-        if(entry['name'] == this.currentUserMail){
+      this.emails = [];
+      element.forEach(entry => {
+        if (entry['name'] == this.currentUserMail) {
           console.log(entry['name']);
           this.emails.push(entry['name']);
         }
@@ -65,7 +69,8 @@ export class ProfilePage {
 
 
   }
-  viewDP(url){
+
+  viewDP(url) {
     this.iab.create(url);
   }
 
@@ -73,18 +78,60 @@ export class ProfilePage {
     //let key = file.key;
     //let storagePath = file.fullPath;
 
-    this.db.list('users',ref => ref.orderByChild('name').equalTo(this.currentUserMail)).snapshotChanges().subscribe(actions =>{
+    this.db.list('users', ref => ref.orderByChild('name').equalTo(this.currentUserMail)).snapshotChanges().subscribe(actions => {
       console.log('ghghgh')
       actions.forEach(action => {
         console.log(action.key);
         this.db.list('users').update(action.key, {profilePicture: "https://firebasestorage.googleapis.com/v0/b/sobha-73684.appspot.com/o/defaultpic.png?alt=media&token=ce8fd8db-3125-4a92-935d-2c1862f7f400"})
+        console.log('deleted');
       })
     });
+  }
 
+  addDP() {
+    let inputAlert = this.alertCtrl.create({
+      title: 'Store new information',
+      inputs: [
+        {
+          name: 'info',
+          placeholder: ''
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
+          text: 'Store',
+          handler: data => {
+            this.uploadProfilePictureInfo(data.info);
 
-    return this.afStorage.ref(url).delete();
+          }
+        }
+      ]
+    });
+    inputAlert.present();
+  }
+
+  uploadProfilePictureInfo(text) {
+    let upload = this.dataProvider.uploadAsProfilePictureToStorage(text);
+
+    upload.then().then(res => {
+      this.dataProvider.storeInfoToDatabase(res.metadata).then(() => {
+        let toast = this.toastCtrl.create({
+          message: 'New File added!',
+          duration: 3000
+        });
+        toast.present();
+      });
+    });
   }
 }
+
+    //this.navCtrl.setRoot(ProfilePage);
+    //this.afStorage.ref(url).delete();
+
    /* console.log('1st part');
     this.profilePicture = this.getDP();
     console.log(this.profilePicture);
